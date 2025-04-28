@@ -71,7 +71,7 @@ def make_guess():
     # Check win/lose conditions
     game_over = False
     won = "_" not in display_word
-    lost = session['hangman_status'] >= 6
+    lost = session['hangman_status'] >= 7
     
     if won or lost:
         session['game_state'] = GAME_OVER
