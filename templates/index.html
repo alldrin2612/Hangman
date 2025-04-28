@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">HANGMAN</h1>
+        
+        <!-- Game Menu Screen -->
+        <div id="menu-screen" class="screen">
+            <h2>Select a Category</h2>
+            <div id="category-buttons" class="category-container">
+                <!-- Categories will be added dynamically -->
+            </div>
+        </div>
+        
+        <!-- Game Play Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div class="game-info">
+                <div class="info-box">
+                    <span>Score: <span id="score">0</span></span>
+                    <span>High Score: <span id="high-score">0</span></span>
+                </div>
+                <div class="info-box">
+                    <span id="category-display">Category: MEDIUM</span>
+                </div>
+                <div class="info-box">
+                    <span>Time: <span id="game-time">0</span>s</span>
+                    <span>Best: <span id="best-time">0</span>s</span>
+                </div>
+            </div>
+            
+            <div class="game-content">
+                <div class="hangman-container">
+                    <div id="hangman-drawing" class="hangman-drawing">
+                        <!-- SVG hangman drawing -->
+                        <svg width="200" height="250" viewBox="0 0 200 250">
+                            <!-- Base -->
+                            <line x1="20" y1="230" x2="100" y2="230" stroke="black" stroke-width="3"/>
+                            <!-- Vertical post -->
+                            <line x1="60" y1="230" x2="60" y2="30" stroke="black" stroke-width="3"/>
+                            <!-- Horizontal beam -->
+                            <line x1="60" y1="30" x2="150" y2="30" stroke="black" stroke-width="3"/>
+                            <!-- Rope -->
+                            <line id="rope" x1="150" y1="30" x2="150" y2="50" stroke="black" stroke-width="2" class="hangman-part hidden"/>
+                            <!-- Head -->
+                            <circle id="head" cx="150" cy="70" r="20" stroke="black" stroke-width="2" fill="transparent" class="hangman-part hidden"/>
+                            <!-- Body -->
+                            <line id="body" x1="150" y1="90" x2="150" y2="150" stroke="black" stroke-width="2" class="hangman-part hidden"/>
+                            <!-- Left arm -->
+                            <line id="left-arm" x1="150" y1="110" x2="120" y2="100" stroke="black" stroke-width="2" class="hangman-part hidden"/>
+                            <!-- Right arm -->
+                            <line id="right-arm" x1="150" y1="110" x2="180" y2="100" stroke="black" stroke-width="2" class="hangman-part hidden"/>
+                            <!-- Left leg -->
+                            <line id="left-leg" x1="150" y1="150" x2="130" y2="190" stroke="black" stroke-width="2" class="hangman-part hidden"/>
+                            <!-- Right leg -->
+                            <line id="right-leg" x1="150" y1="150" x2="170" y2="190" stroke="black" stroke-width="2" class="hangman-part hidden"/>
+                            <!-- Face (only visible on loss) -->
+                            <g id="face" class="hangman-part hidden">
+                                <line x1="140" y1="65" x2="145" y2="70" stroke="black" stroke-width="2"/>
+                                <line x1="145" y1="65" x2="140" y2="70" stroke="black" stroke-width="2"/>
+                                <line x1="155" y1="65" x2="160" y2="70" stroke="black" stroke-width="2"/>
+                                <line x1="160" y1="65" x2="155" y2="70" stroke="black" stroke-width="2"/>
+                                <path d="M140,80 Q150,75 160,80" stroke="black" stroke-width="2" fill="transparent"/>
+                            </g>
+                        </svg>
+                    </div>
+                    
+                    <div class="word-display">
+                        <h2 id="word-container">_ _ _ _ _</h2>
+                    </div>
+                </div>
+                
+                <div class="keyboard-container">
+                    <div id="keyboard" class="keyboard">
+                        <!-- Keyboard will be generated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen hidden">
+            <h2 id="result-message">Game Over</h2>
+            <p id="word-reveal">The word was: <span id="revealed-word"></span></p>
+            
+            <div class="stats">
+                <p>Score: <span id="final-score">0</span> | High Score: <span id="final-high-score">0</span></p>
+                <p>Time: <span id="final-time">0</span>s | Best Time: <span id="final-best-time">0</span>s</p>
+            </div>
+            
+            <div class="buttons">
+                <button id="play-again-btn" class="btn">Play Again</button>
+                <button id="menu-btn" class="btn">Menu</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Particle Canvas (for special effects) -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+    
+    <script src="{{ url_for('static', filename='js/hangman.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,370 @@
+/* General Styles */
+:root {
+    --primary-color: #173e43;
+    --secondary-color: #3fb0ac;
+    --accent-color: #fae596;
+    --light-color: #dddfd4;
+    --dark-color: #173e43;
+    --success-color: #4caf50;
+    --error-color: #e74c3c;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    z-index: 10;
+}
+
+/* Title Styles */
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+/* Screen Styles */
+.screen {
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Category Selection */
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.category-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    font-family: 'Comic Neue', cursive;
+}
+
+.category-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow);
+    background-color: var(--primary-color);
+}
+
+/* Game Info */
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+
+/* Game Content */
+.game-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.hangman-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.hangman-drawing {
+    margin-bottom: 20px;
+}
+
+.word-display {
+    margin: 20px 0;
+}
+
+#word-container {
+    font-size: 2.5rem;
+    letter-spacing: 8px;
+}
+
+/* Keyboard Styles */
+.keyboard-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.keyboard-key {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.keyboard-key:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+}
+
+.keyboard-key.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.keyboard-key.correct {
+    background-color: var(--success-color);
+}
+
+.keyboard-key.incorrect {
+    background-color: var(--error-color);
+}
+
+/* Hangman Drawing */
+.hangman-part {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hangman-part.visible {
+    opacity: 1;
+}
+
+/* Game Over Screen */
+#game-over-screen {
+    padding: 30px;
+}
+
+#result-message {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#result-message.won {
+    color: var(--success-color);
+}
+
+#result-message.lost {
+    color: var(--error-color);
+}
+
+#word-reveal {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.stats {
+    margin: 30px 0;
+    font-size: 1.2rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Comic Neue', cursive;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+    background-color: var(--primary-color);
+}
+
+/* Particle Canvas */
+.particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* SVG Styles */
+svg {
+    overflow: visible;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Apply animations */
+#game-screen, #game-over-screen {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.keyboard-key {
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.incorrect {
+    animation: shake 0.5s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        width: 95%;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #word-container {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+    }
+    
+    .keyboard-key {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .category-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .keyboard-key {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    #word-container {
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+    }
+} 
